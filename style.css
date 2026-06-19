@@ -409,75 +409,65 @@ section {
     .hero-content h1 { font-size: 2.5rem; }
     section { padding: 60px 5%; }
 }
-/* --- Professional Photo Frame Layout --- */
+/* --- Seamless Borderless Hero Layout --- */
 
-/* Flex container to position text left and photo right */
+/* Split the hero section into two clean, equal halves */
 .hero-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 650px;
+    flex: 1.2; /* Gives slightly more breathing room to your text */
+    padding-right: 2rem;
 }
 
-/* The Photo Wrapper & Frame Styling */
+/* Photo section occupies the complete right half seamlessly */
 .hero-photo-wrapper {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    height: 100%;
 }
 
-.profile-frame {
-    position: relative;
-    padding: 10px; 
-    background: linear-gradient(135deg, #131a30, #0a0f1d);
-    border: 2px solid rgba(0, 242, 254, 0.25);
-    border-radius: 12px; 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                0 0 25px rgba(0, 242, 254, 0.15);
-    transition: all 0.4s ease;
+/* Fluid, borderless image filling the dedicated space */
+.profile-img-fluid {
+    width: 100%;
+    max-width: 420px;       /* Controls the maximum desktop sizing */
+    height: 520px;          /* Elegant, taller vertical profile ratio */
+    object-fit: cover;      /* Prevents stretching or distortion */
+    border: none;           /* Completely removes any borders */
+    background: transparent;
+    filter: brightness(1.03) contrast(1.01);
+    mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%); /* Smoothly fades base into background */
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
 }
 
-/* Micro-interaction: Frame glows brighter when hovered */
-.profile-frame:hover {
-    border-color: var(--accent-neon);
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
-                0 0 35px rgba(0, 242, 254, 0.35);
-}
-
-/* The actual image inside the frame - Made taller */
-.profile-img {
-    width: 280px;        /* Keeps the width uniform */
-    height: 380px;       /* Increased from 280px to make it long/vertical */
-    object-fit: cover;   /* Crucial: prevents the image from stretching */
-    border-radius: 8px;  /* Clean rounded corners */
-    display: block;
-    filter: brightness(1.02) contrast(1.02); 
-}
-
-/* Responsive fix: On mobile devices, stack photo on top of text */
+/* Responsive configurations for mobile displays */
 @media (max-width: 992px) {
     .hero-container {
         flex-direction: column-reverse;
         text-align: center;
-        gap: 2.5rem;
-        padding-top: 2rem;
+        gap: 3rem;
+        padding-top: 4rem;
+    }
+    
+    .hero-content {
+        padding-right: 0;
     }
     
     .hero-photo-wrapper {
-        margin-bottom: 1rem;
+        justify-content: center;
+        width: 100%;
     }
     
-    .profile-img {
-        width: 220px;
-        height: 300px;
+    .profile-img-fluid {
+        max-width: 300px;
+        height: 380px;
     }
     
     .hero-buttons, .social-links {
