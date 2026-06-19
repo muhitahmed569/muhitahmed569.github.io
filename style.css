@@ -1,4 +1,4 @@
-/* Core Layout Settings & Dark Palette */
+/* Core Layout Settings & Premium Dark Palette */
 :root {
     --bg-dark: #0a0f1d;
     --bg-card: #131a30;
@@ -23,7 +23,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Modern Sticky Header */
+/* --- Modern Sticky Navigation Bar --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -57,7 +57,7 @@ body {
 }
 
 .nav-links li {
-    margin-left: 2.5rem;
+    margin-left: 1.8rem; /* Adjusted down slightly so all items fit cleanly on one line */
 }
 
 .nav-links a {
@@ -85,7 +85,7 @@ body {
     box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
 }
 
-/* Dynamic Hero Showcase */
+/* --- Seamless Borderless Hero Layout --- */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -93,11 +93,18 @@ body {
     padding: var(--nav-height) 10% 0 10%;
 }
 
-.hero-content {
-    max-width: 750px;
-    opacity: 0;
-    transform: translateY(30px);
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
     animation: initialFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-content {
+    flex: 1.2; /* Gives slightly more breathing room to your text */
+    padding-right: 2rem;
 }
 
 .badge {
@@ -110,6 +117,7 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
 .hero-content h1 {
@@ -130,7 +138,7 @@ body {
     margin-bottom: 2.5rem;
 }
 
-/* Premium Buttons & Interactive Links */
+/* --- Premium Buttons & Interactive Social Links --- */
 .hero-buttons {
     display: flex;
     gap: 1.5rem;
@@ -186,7 +194,33 @@ body {
     transform: translateY(-3px);
 }
 
-/* Structure Sections & Typography */
+/* --- Full-Bleed Fluid Image Element --- */
+.hero-photo-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.profile-img-fluid {
+    width: 100%;
+    max-width: 420px;       /* Controls maximum desktop width */
+    height: 520px;          /* Taller profile height layout requested */
+    object-fit: cover;      /* Prevents image distortion */
+    border: none;           /* Borderless aesthetic */
+    background: transparent;
+    filter: brightness(1.03) contrast(1.01);
+    mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%); /* Fades image into base layout */
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
+}
+
+/* --- Layout Sections & Grid Matrix --- */
+section {
+    padding: 100px 10%;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
 .section-title {
     font-size: 2.2rem;
     font-weight: 700;
@@ -205,12 +239,6 @@ body {
     background-color: var(--accent-neon);
 }
 
-section {
-    padding: 100px 10%;
-    border-top: 1px solid rgba(255, 255, 255, 0.02);
-}
-
-/* Responsive Micro-Interaction Cards (Grid) */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -239,6 +267,9 @@ section {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .project-card h3 {
@@ -266,7 +297,7 @@ section {
     font-size: 0.8rem;
 }
 
-/* Skills Matrix Section */
+/* --- Skills Matrix Section --- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -306,7 +337,7 @@ section {
     color: var(--accent-neon);
 }
 
-/* Academic Timeline */
+/* --- Academic Timeline --- */
 .timeline {
     position: relative;
     max-width: 800px;
@@ -346,7 +377,7 @@ section {
     color: var(--text-secondary);
 }
 
-/* Interactive Contact Layout */
+/* --- Interactive Contact Layout --- */
 .contact-subtitle {
     color: var(--text-secondary);
     margin-bottom: 3rem;
@@ -376,7 +407,7 @@ section {
     border-color: var(--accent-neon);
 }
 
-/* Footer & Global Scroll Animations */
+/* --- Footer & Global Scroll Animations --- */
 .footer {
     text-align: center;
     padding: 2.5rem 0;
@@ -397,57 +428,17 @@ section {
 }
 
 @keyframes initialFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Mobile Responsiveness Rules */
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-content h1 { font-size: 2.5rem; }
-    section { padding: 60px 5%; }
-}
-/* --- Seamless Borderless Hero Layout --- */
-
-/* Split the hero section into two clean, equal halves */
-.hero-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 2rem;
-}
-
-.hero-content {
-    flex: 1.2; /* Gives slightly more breathing room to your text */
-    padding-right: 2rem;
-}
-
-/* Photo section occupies the complete right half seamlessly */
-.hero-photo-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 100%;
-}
-
-/* Fluid, borderless image filling the dedicated space */
-.profile-img-fluid {
-    width: 100%;
-    max-width: 420px;       /* Controls the maximum desktop sizing */
-    height: 520px;          /* Elegant, taller vertical profile ratio */
-    object-fit: cover;      /* Prevents stretching or distortion */
-    border: none;           /* Completely removes any borders */
-    background: transparent;
-    filter: brightness(1.03) contrast(1.01);
-    mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%); /* Smoothly fades base into background */
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%, black 100%);
-}
-
-/* Responsive configurations for mobile displays */
+/* --- Responsive Layout Breakpoints --- */
 @media (max-width: 992px) {
     .hero-container {
         flex-direction: column-reverse;
@@ -473,4 +464,10 @@ section {
     .hero-buttons, .social-links {
         justify-content: center;
     }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-content h1 { font-size: 2.5rem; }
+    section { padding: 60px 5%; }
 }
